@@ -14,7 +14,7 @@
                 </h1>
                 <nav class="flax gap-2 items-center">
                         <a class="font-blod uppercase text-gray-600 text-sm" href="#">Login</a>
-                        <a class="font-blod uppercase text-gray-600 text-sm" href="/crear-cuenta">Cuenta</a>
+                        <a class="font-blod uppercase text-gray-600 text-sm" href="/devstagram/public/crear-cuenta">Cuenta</a>
                 </nav>
         </div>
         </header>
