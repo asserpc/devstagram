@@ -12,9 +12,10 @@
                 <h1 class="text-3xl font-black">
                     Devstragram
                 </h1>
-                <nav class="flax gap-2 items-center">
+                <nav class="flax gap-3 items-center">
+                        <a class="font-blod uppercase text-gray-600 text-sm" href="/">Inicio</a>
                         <a class="font-blod uppercase text-gray-600 text-sm" href="#">Login</a>
-                        <a class="font-blod uppercase text-gray-600 text-sm" href="/devstagram/public/crear-cuenta">Cuenta</a>
+                        <a class="font-blod uppercase text-gray-600 text-sm" href="{{ route('register') }}">Cuenta</a>
                 </nav>
         </div>
         </header>
@@ -26,7 +27,7 @@
             @yield('contenido')
         </Main>
 
-        <footer class="text-center p-5 text-blue-800 font-bold uppercase">
+        <footer class="mt-10 text-center p-5 text-blue-800 font-bold uppercase">
             Deitotec@ .Todos los Derechos reservados {{now()->year}}
         </footer>
   
