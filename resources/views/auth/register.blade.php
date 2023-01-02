@@ -68,14 +68,11 @@
                 <div class="mb-5">
                     <label for="password_confirmation" class="mb-2 block uppercase text-gray-600 font-bold">Rpepite tu Clave</label>
                     <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Tu Clave"
-                        class="border p-3 w-full rounded-lg @error('password_confirmation') border-red-600 @enderror"
-                        value="{{ old('password_confirmation') }}" 
+                        class="border p-3 w-full rounded-lg "
+                        
                     />
-                    @error('password_confirmation')
-                        <p class="bg-red-700 text-white my-2 rounded-lg text-sm p-2 text-center ">
-                            {{ $message }}
-                        </p>
-                    @enderror
+            
+            
                 </div>
                 
                 <input type="submit" value="Crear Cuenta" 
