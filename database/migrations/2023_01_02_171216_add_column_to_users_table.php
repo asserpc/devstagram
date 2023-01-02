@@ -15,7 +15,7 @@ return new class extends Migration
     {    //en la funciones up es lo que se realiza cuando se corre la migracion
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('username');
+            $table->string('username')->unique();
         });
     }
 
