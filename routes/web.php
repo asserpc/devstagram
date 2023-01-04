@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\Registercontroller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\Registercontroller;
+use Illuminate\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +24,8 @@ Route::get('/', function () {
 Route::get('/register',[Registercontroller::class,'index'])->name('register');
 Route::post('/register',[Registercontroller::class,'store']);
 
+Route::get('/login', [LoginController::class,'index'])->name('login');
+Route::post('/login', [LoginController::class,'store']);
+Route::get('/logout', [LogoutController::class,'store'])->name('logout');
 
 Route::get('/muro',[PostController::class,'index'])->name('post.index');

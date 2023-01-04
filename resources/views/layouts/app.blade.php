@@ -13,9 +13,16 @@
                     Devstragram
                 </h1>
                 <nav class="flax gap-3 items-center">
-                        <a class="font-blod uppercase text-gray-600 text-sm" href="/">Inicio</a>
-                        <a class="font-blod uppercase text-gray-600 text-sm" href="#">Login</a>
-                        <a class="font-blod uppercase text-gray-600 text-sm" href="{{ route('register') }}">Cuenta</a>
+                    <a class="font-blod uppercase text-gray-600 text-sm" href="/">Inicio</a>
+                    @auth
+                        <a class="font-blod uppercase text-gray-600 text-sm" href="{{ route('logout') }}">Logout</a>
+                        Hola: <span> {{ auth()->user()->name }}</span>
+                       
+                    @endauth
+                    @guest
+                        <a class="font-blod uppercase text-gray-600 text-sm" href="{{ route('login') }}">Login</a>
+                        <a class="font-blod uppercase text-gray-600 text-sm" href="{{ route('register') }}">Registrate</a>
+                    @endguest
                 </nav>
         </div>
         </header>
