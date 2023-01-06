@@ -3,8 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        @stack('styles')
         <title>Devtagram - @yield('titulo')</title>
         @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
     </head>
     <body class="bg-gray-200">
         <header class="p-5 border-b bg-white shadow">
@@ -15,7 +17,9 @@
                 <nav class="flex gap-6 items-center">
                     
                     @auth
-                        <span> Hola: {{ auth()->user()->name }}</span>
+                        <a class="font-blod uppercase text-gray-600 text-sm" href="{{route('post.index',auth()->user()->username)}}">
+                            <span> Hola: {{ auth()->user()->name }}</span>
+                        </a>
                         <a 
                             class="flex items-center gap-2 bg-white border p-2 text-gray-600 
                             rounded text-sm uppercase font-bold cursor-pointer"

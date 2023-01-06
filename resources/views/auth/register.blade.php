@@ -76,7 +76,8 @@
                 </div>
                 
                 <input type="submit" value="Crear Cuenta" 
-                    class="bg-sky-800 hover:bg-amber-700 trasitions-colora cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
+                    class="bg-sky-800 hover:bg-amber-700 trasitions-colora 
+                    cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
             </form>
         </div>
     </div>

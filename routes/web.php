@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Registercontroller;
 use Illuminate\Routing\Route as RoutingRoute;
@@ -33,6 +34,10 @@ Route::post('/logout', [LogoutController::class,'store'])->name('logout');
   // que los redirect()->route reciban a parte del name ()  un array 
   // ['user' => auth()->user()->username] donde se envie el nombre y el valor del parametro
   // en clos controllers o dara error
+  //recordar colocar las recciones en plurar 
 Route::get('/{user:username}',[PostController::class,'index'])->name('post.index');
 
-Route::get('/post/create',[PostController::class,'create'])->name('post.create');
+Route::get('/posts/create',[PostController::class,'create'])->name('post.create');
+
+//para guardar las imagenes
+Route::post('/imagenes', [ImagenController::class,'store'])->name('imagenes.store');
