@@ -20,8 +20,20 @@ class PostController extends Controller
             'user'=>$user,
         ]);
     }
+
+    // esta funcion permite mostar la pagina y subir imagenes
     public function create()
     {
         return view('posts.create');
+    }
+
+    // este metodo almacena el post en la BD
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+        'titulo'=>'required|max 250',
+        'description'=>'required',
+        'image'=>'required',
+        ]);
     }
 }

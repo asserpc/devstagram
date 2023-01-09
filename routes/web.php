@@ -35,9 +35,12 @@ Route::post('/logout', [LogoutController::class,'store'])->name('logout');
   // ['user' => auth()->user()->username] donde se envie el nombre y el valor del parametro
   // en clos controllers o dara error
   //recordar colocar las recciones en plurar 
-Route::get('/{user:username}',[PostController::class,'index'])->name('post.index');
+Route::get('/{user:username}',[PostController::class,'index'])->name('posts.index');
 
-Route::get('/posts/create',[PostController::class,'create'])->name('post.create');
+Route::get('/posts/create',[PostController::class,'create'])->name('posts.create');
+
+//guardar los post
+Route::post('/posts',[PostController::class,'store'])->name('posts.store');
 
 //para guardar las imagenes
 Route::post('/imagenes', [ImagenController::class,'store'])->name('imagenes.store');
