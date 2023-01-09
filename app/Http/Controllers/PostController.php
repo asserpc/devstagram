@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,10 +31,21 @@ class PostController extends Controller
     // este metodo almacena el post en la BD
     public function store(Request $request)
     {
+       // dd($request);
+
         $this->validate($request, [
-        'titulo'=>'required|max 250',
+        'titulo'=>'required',
         'description'=>'required',
         'image'=>'required',
         ]);
+
+        Post::create([
+            'titulo'=> $request->titulo,
+            'description'=>$request->description,
+            'image'=>$request->image,
+            'user_id'=>auth()->user()->id
+        ]);
+
+        return redirect()->route('posts.index', auth()->user()->username); 
     }
 }

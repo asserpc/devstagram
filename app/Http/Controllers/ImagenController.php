@@ -23,7 +23,7 @@ class ImagenController extends Controller
         $imagenServidor->save($imagenPath);
 
         //retornando el nombre para la BD
-        return response()->json([ 'imagen'=> $nombreImagen ]);
+        return response()->json([ 'image'=> $nombreImagen ]);
 
     }
 }
