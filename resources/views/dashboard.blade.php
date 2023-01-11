@@ -36,10 +36,14 @@
             Publicaciones
         </h2>
         @if ($posts->count()>0)
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-4">
+        <div class="justify-center items-center grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-4">
             @foreach ($posts as $post)
                 <div>
-                    <a href="#">
+                    {{-- la siguiente es una referencia de una sola variable
+                         <a href="{{ route('posts.show', $post) }}"> --}}
+                    {{--  en el Route Model binded (RMD) de laravel soporta multiples variables de multiples modelos si esto esta
+                          declarado en el controler --}}
+                    <a href="{{ route('posts.show', ['post'=>$post, 'user'=>$user]) }}">
                         <img src="{{asset('uploads').'/'. $post->image}}" alt="Imagen del Post {{$post->titulo}}">
                     </a>
                 </div>

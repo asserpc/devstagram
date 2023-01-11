@@ -84,4 +84,14 @@ class PostController extends Controller
 
         return redirect()->route('posts.index', auth()->user()->username); 
     }
+
+    //este metodo es para mostrar los post y que se puedan comentar, dar like etc
+    // al recibir un objeto Post entonces $post tambien se puede envia a la vista
+    //podemos recibir varias variables a la vez e incluso pasarlas a la vista
+    public function show(User $user, Post $post)
+    {
+        return view('posts.show', [
+            'post'=>$post
+        ]);
+    }
 }

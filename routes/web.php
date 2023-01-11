@@ -41,6 +41,10 @@ Route::get('/posts/create',[PostController::class,'create'])->name('posts.create
 
 //guardar los post
 Route::post('/posts',[PostController::class,'store'])->name('posts.store');
+//visitar un post
+//note el aqui el RMB tiene asociadas dos variables -- user --- y -- post -- esto es porque este esquema permite este tipo de acciones
+//solo debe enviar las dos variables como un arreglo asociativo y recibir los valores
+Route::get('/{user:username}/posts/{post:titulo}',[PostController::class,'show'])->name('posts.show');
 
 //para guardar las imagenes
 Route::post('/imagenes', [ImagenController::class,'store'])->name('imagenes.store');
