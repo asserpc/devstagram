@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Comentario;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -19,6 +20,8 @@ class Post extends Model
         'user_id'
      ];
 
+
+     // LAS RELACIONES
      /**
       * para crear la relacion inversa de un post a un modelo
       * hay que destacar que en este caso un usuario puede tener
@@ -31,5 +34,11 @@ class Post extends Model
       public function user()
       {
          return $this->belongsTo(User::class);
+      }
+
+      //ahora un post puede tener multiples comentarios 
+      public function comentarios()
+      {
+         return $this->hasMany(Comentario::class);
       }
 }

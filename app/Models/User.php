@@ -48,7 +48,7 @@ class User extends Authenticatable
      * Crear relaciones de usuarios con post
      * relacion 1 a N (hasmany)
      */
-    public function post()
+    public function posts()
     {
         return $this->hasMany(Post::class);
     }

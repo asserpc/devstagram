@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComentarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
@@ -45,6 +46,13 @@ Route::post('/posts',[PostController::class,'store'])->name('posts.store');
 //note el aqui el RMB tiene asociadas dos variables -- user --- y -- post -- esto es porque este esquema permite este tipo de acciones
 //solo debe enviar las dos variables como un arreglo asociativo y recibir los valores
 Route::get('/{user:username}/posts/{post:titulo}',[PostController::class,'show'])->name('posts.show');
+
+//almacenando los comentarios
+Route::post('/{user:username}/posts/{post:titulo}',[ComentarioController::class,'store'])->name('comentarios.store');
+
+//para eliminar post
+Route::delete('/posts/{post:titulo}',[PostController::class,'destroy'])->name('posts.destroy');
+
 
 //para guardar las imagenes
 Route::post('/imagenes', [ImagenController::class,'store'])->name('imagenes.store');

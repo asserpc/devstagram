@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    //proteger la pestaña del muro
+    //protege los post de manera que solo sean accesibles si el usuario esta autenticado
+    //$this->middleware('auth');
+    //tambien puedes agregar excepciones a lo anterior con
+    //except(['metodos','...'....])
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['show','index']);
     }
 
     public function index(User $user)
@@ -91,7 +94,13 @@ class PostController extends Controller
     public function show(User $user, Post $post)
     {
         return view('posts.show', [
-            'post'=>$post
+            'post'=>$post,
+            'user'=>$user
         ]);
+    }
+
+    public function destroy(Post $post)
+    {
+        dd('eliminando ',$post->id);
     }
 }
