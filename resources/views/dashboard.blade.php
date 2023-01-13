@@ -35,7 +35,18 @@
         <h2 class="text-4xl text-center font-black my-10">
             Publicaciones
         </h2>
-        @if ($posts->count()>0)
+        {{-- probando un mensaje --}}
+        @if (session('mensaje'))
+            <p class="bg-green-500 text-black rounded-xl p-5 mb-4 text-center">
+                {{ session('mensaje') }}
+            </p>
+            
+        @endif
+        
+        
+        {{-- este if no lleva >0 debido a que los boolean en php se tratan como entero
+             con 0=false y cualquier otra cosa =true  --}}
+        @if ($posts->count())
         <div class="justify-center items-center grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-4">
             @foreach ($posts as $post)
                 <div>

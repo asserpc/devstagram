@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -101,6 +102,25 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        dd('eliminando ',$post->id);
+       //esta es una validacion basada en la policy 
+       $this->authorize('delete',$post);
+       //elimina el post
+       //dd($post->image);
+       $post->delete();
+        // cuando se elimina un post de la bd tambien se debe eliminar la imagen asociada a ese post de uploads
+        //eliminado la imagen fisica
+        //es posible que sea image... 
+        
+        $imagen_path=public_path('uploads/'.$post->image);
+        
+        if (File::exists($imagen_path)) {
+            //de laravel existe 
+            //File::unlink($imagen_path);
+            // de php tambien existe directamente 
+            unlink($imagen_path);
+        }
+
+        //regresa al muro y mensaje de exito
+       return redirect()->route('posts.index',auth()->user()->username)->with('mensaje','Publicacion elimianda con exito');
     }
 }

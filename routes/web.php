@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\ComentarioController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Registercontroller;
 use Illuminate\Routing\Route as RoutingRoute;
+use App\Http\Controllers\ComentarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +57,9 @@ Route::delete('/posts/{post:titulo}',[PostController::class,'destroy'])->name('p
 
 //para guardar las imagenes
 Route::post('/imagenes', [ImagenController::class,'store'])->name('imagenes.store');
+
+
+//likes
+Route::post('/posts/{post:titulo}/likes',[LikeController::class,'store'])->name('posts.likes.store');
+//remover likes
+Route::delete('/posts/{post:titulo}/likes',[LikeController::class,'destroy'])->name('posts.likes.destroy');
