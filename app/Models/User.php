@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Post;
+use App\Models\User;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -56,5 +57,12 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    //los que me siguien =Followers
+    //debido a que esta tabla no sigue la convencion laravel debe especificarse todos los elementos de la relacion
+    public function followers()
+    {
+        return $this->belongsToMany(User::class,'followers','user_id','follower_id');
     }
 }

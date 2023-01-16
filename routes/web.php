@@ -6,6 +6,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\Registercontroller;
 use Illuminate\Routing\Route as RoutingRoute;
 use App\Http\Controllers\ComentarioController;
@@ -63,3 +65,11 @@ Route::post('/imagenes', [ImagenController::class,'store'])->name('imagenes.stor
 Route::post('/posts/{post:titulo}/likes',[LikeController::class,'store'])->name('posts.likes.store');
 //remover likes
 Route::delete('/posts/{post:titulo}/likes',[LikeController::class,'destroy'])->name('posts.likes.destroy');
+
+//rutas al perfil y edicion
+Route::get('/{user:username}/editar-perfil',[PerfilController::class,'index'])->name('perfil.index');
+Route::post('/{user:username}/editar-perfil',[PerfilController::class,'store'])->name('perfil.store');
+
+//para guardar seguidores
+Route::post('/{user:username}/follow',[FollowerController::class,'store'])->name('users.follow');
+Route::delete('/{user:username}/unfollow',[FollowerController::class,'destroy'])->name('users.unfollow');
