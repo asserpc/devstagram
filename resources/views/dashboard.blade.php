@@ -32,12 +32,13 @@
                
 
                 <p class="text-gray-800 text-sm mb-3 font-bold mt-5">
-                   0
-                   <span class="font-normal">Seguidores</span> 
+                    {{-- porque funciona sion el parentesis en followers? --}}
+                    {{ $user->followers()->count() }}
+                   <span class="font-normal"> @choice('Seguidor|Seguidores', $user->followers()->count() )</span> 
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
-                   0
-                   <span class="font-normal">Siguiendo</span> 
+                    {{ $user->followings()->count() }}
+                    <span class="font-normal"> Siguiendo</span> 
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
                    {{ $user->posts->count() }}
@@ -45,25 +46,27 @@
                 </p>
                 @auth
                     @if ($user->id!=auth()->user()->id)
-                        
-                        <form action="" 
-                            method="post">
-                            @csrf
-                            <input 
-                                class="bg-blue-600 text-white uppercase text-sm px-3 py-1 rounded-xl 
-                                font-bold cursor-pointer"
-                                type="submit" value="Seguir">
-                        </form>
-                        <form action="" 
-                            method="post">
-                            @csrf
-                            <input 
-                                class="bg-red-600 text-white uppercase text-sm px-3 py-1 rounded-xl 
-                                font-bold cursor-pointer"
-                                type="submit" value="Dejar de Seguir">
-                        </form>
-                    
-                    
+                        @if ($user->siguiendo( auth()->user()))
+                            <form action="{{ route('users.unfollow',$user) }}" 
+                                 method="post">
+                                @method('DELETE')
+                                @csrf
+                                <input 
+                                    class="bg-red-600 text-white uppercase text-sm px-3 py-1 rounded-xl 
+                                    font-bold cursor-pointer"
+                                    type="submit" value="Dejar de Seguir">
+                            </form>
+                        @else
+                            <form action="{{ route('users.follow',$user) }}" 
+                                method="post">
+                                @csrf
+                                <input 
+                                    class="bg-blue-600 text-white uppercase text-sm px-3 py-1 rounded-xl 
+                                    font-bold cursor-pointer"
+                                    type="submit" value="Seguir">
+                            </form>
+                        @endif
+ 
                     @endif
                     
                 @endauth
@@ -88,25 +91,25 @@
         {{-- este if no lleva >0 debido a que los boolean en php se tratan como entero
              con 0=false y cualquier otra cosa =true  --}}
         @if ($posts->count())
-        <div class="justify-center items-center grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-4">
-            @foreach ($posts as $post)
-                <div>
-                    {{-- la siguiente es una referencia de una sola variable
-                         <a href="{{ route('posts.show', $post) }}"> --}}
-                    {{--  en el Route Model binded (RMD) de laravel soporta multiples variables de multiples modelos si esto esta
-                          declarado en el controler --}}
-                    <a href="{{ route('posts.show', ['post'=>$post, 'user'=>$user]) }}">
-                        <img src="{{asset('uploads').'/'. $post->image}}" alt="Imagen del Post {{$post->titulo}}">
-                    </a>
-                </div>
-            @endforeach
-        </div>
-        <div>
-            {{-- esto es para agregar la paginacion que se vea si usas el metodo paginate --}}
-            {{-- por defecto usa los estilos de tailwindcss pero se requiere un cambio adicional para que se noten
-                  dentro del metod link puede invocar el tipo de css que deseas para paginas  --}}
-            {{ $posts->links('pagination::tailwind') }}
-        </div>
+            <div class="justify-center items-center grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-4">
+                @foreach ($posts as $post)
+                    <div>
+                        {{-- la siguiente es una referencia de una sola variable
+                            <a href="{{ route('posts.show', $post) }}"> --}}
+                        {{--  en el Route Model binded (RMD) de laravel soporta multiples variables de multiples modelos si esto esta
+                            declarado en el controler --}}
+                        <a href="{{ route('posts.show', ['post'=>$post, 'user'=>$post->user]) }}">
+                            <img src="{{asset('uploads').'/'. $post->image}}" alt="Imagen del Post {{$post->titulo}}">
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+            <div>
+                {{-- esto es para agregar la paginacion que se vea si usas el metodo paginate --}}
+                {{-- por defecto usa los estilos de tailwindcss pero se requiere un cambio adicional para que se noten
+                    dentro del metod link puede invocar el tipo de css que deseas para paginas  --}}
+                {{ $posts->links('pagination::tailwind') }}
+            </div>
         @else
             <p class="text-gray-600 uppercase text-center font-bold">
                 No hay Publicaciones aún

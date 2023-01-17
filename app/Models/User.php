@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Post;
-use App\Models\User;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,6 +62,23 @@ class User extends Authenticatable
     //debido a que esta tabla no sigue la convencion laravel debe especificarse todos los elementos de la relacion
     public function followers()
     {
+        // importante luego de la tabla viene la columna de partida y despues la de llegada
+        //en este caso parte de user_id (el muro)  a Follower_id (visitante)
         return $this->belongsToMany(User::class,'followers','user_id','follower_id');
     }
+
+    public function followings()
+    {
+        // importante luego de la tabla viene la columna de partida y despues la de llegada
+        //en este caso parte de Follower_id (visitante) a  user_id (el muro) 
+        return $this->belongsToMany(User::class,'followers','follower_id','user_id');
+    }
+
+    //para comprobar si un usuario ya esta siguiendo al perfil vistado
+    public  function siguiendo(User $user)
+    {
+        return $this->followers->contains($user->id);
+    }
+  
+     
 }

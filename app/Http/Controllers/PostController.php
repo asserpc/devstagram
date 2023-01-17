@@ -26,7 +26,7 @@ class PostController extends Controller
         // tambien puedes paginar los resultados usando el metodo: ->paginate(cant_reg_por_pagina)
         //$posts= Post::where('user_id',$user->id)->get();
         //tambie esta ->simplePaginate() que hace una paginacion solo agregando siguiente y anterior;
-        $posts= Post::where('user_id',$user->id)->paginate(4);
+        $posts= Post::where('user_id',$user->id)->latest()->paginate(4);
        // dd($post);
 
        // aqui a la vista se le envia el usuario
