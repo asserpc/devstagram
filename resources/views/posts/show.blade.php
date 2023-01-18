@@ -7,9 +7,18 @@
 @section('contenido')
     <div class="continer mx-auto md:flex">
         <div class="md:w-1/2 ">
-            <img class="max-w-lg max-h-lg" src="{{ asset('uploads').'/'.$post->image }}" alt=" imagen de {{ $post->titulo }} "/>
+            <img class="max-w-lg max-h-lg" src="{{ asset('uploads').'/'.$post->image }}"
+                 alt=" imagen de {{ $post->titulo }} "/>
             <div class="p-3 flex items-center gap-4">
                @auth
+                    {{-- crear variable php --}}
+                    {{-- @php
+                        $mensaje="Este mensaje es desde show";
+                    @endphp --}}
+
+                    {{-- agregando el componente livewire
+                        los comnponentes livewire se agregan con la etiqueta <livewire: "nombre del componente"/> --}}
+                    <livewire:like-post :post="$post" />    
                     @if ( $post->checkLike(auth()->user() ))
                         <form action="{{ route('posts.likes.destroy',$post) }}" method="post">
                             @method('DELETE')

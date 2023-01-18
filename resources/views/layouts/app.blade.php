@@ -7,6 +7,12 @@
         <title>Devtagram - @yield('titulo')</title>
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
+
+        {{-- importante colocar estas dos directivas 
+            @livewireStyles sin parentesis en el head
+            @livewireScripts sin parentesis antel del body final --}}
+         @livewireStyles
+
     </head>
     <body class="bg-gray-200">
         <header class="p-5 border-b bg-white shadow">
@@ -58,5 +64,7 @@
             Deitotec@ .Todos los Derechos reservados {{now()->year}}
         </footer>
   
+        {{-- el otro de livewire --}}
+        @livewireScripts
     </body>
 </html>
