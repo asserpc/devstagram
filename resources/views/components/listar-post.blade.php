@@ -26,14 +26,14 @@
                 </div>
             @endforeach
         </div>
-        <div>
+        <div class="my-10">
             {{-- esto es para agregar la paginacion que se vea si usas el metodo paginate --}}
             {{-- por defecto usa los estilos de tailwindcss pero se requiere un cambio adicional para que se noten
                 dentro del metod link puede invocar el tipo de css que deseas para paginas  --}}
             {{ $posts->links('pagination::tailwind') }}
         </div>
     @else
-        <p> No Hay posts</p>
+        <p class="text-center"> No Hay posts</p>
     @endif
 
 </div>

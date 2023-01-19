@@ -18,8 +18,10 @@
 
                     {{-- agregando el componente livewire
                         los comnponentes livewire se agregan con la etiqueta <livewire: "nombre del componente"/> --}}
-                    <livewire:like-post :post="$post" />    
-                    @if ( $post->checkLike(auth()->user() ))
+                    <livewire:like-post :post="$post" />   
+                    
+                    {{-- de momento este codigo va a ser suplantado por livewire con un boton en like-post --}}
+                    {{-- @if ( $post->checkLike(auth()->user() ))
                         <form action="{{ route('posts.likes.destroy',$post) }}" method="post">
                             @method('DELETE')
                             @csrf
@@ -47,11 +49,13 @@
                                 </button>  
                             </div>
                         </form>
-                    @endif
+                    @endif --}}
                @endauth
-                <p>
+
+               {{-- se agrego dentro del componente livewire --}}
+                {{-- <p>
                     {{ $post->likes->count() }} likes
-                </p>
+                </p> --}}
             </div>
             <div >
                 <p class="font-bold">
