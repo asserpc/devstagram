@@ -1,5 +1,5 @@
 <IfModule Mod_rewrite.c>
-    RewriteEmgine On
+    RewriteEngine On
     RewriteBase /
     RewriteCond %{REQUEST_URI} !/public
     RewriteRule ^(.*)$ public/$1
